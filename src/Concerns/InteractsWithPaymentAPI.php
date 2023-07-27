@@ -251,5 +251,17 @@ trait InteractsWithPaymentAPI
         );
     }
 
-    // TODO: Implement get gopay account
+    public function statusGopay(Response|string $id): Response
+    {
+        $id = match (true) {
+            $id instanceof Response => $id->json('account_id'),
+            default => $id,
+        };
+
+        return Transporter::request(
+            "/pay/account/{$id}",
+            'get',
+            $this->headers
+        );
+    }
 }
