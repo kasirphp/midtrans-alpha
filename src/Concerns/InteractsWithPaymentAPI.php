@@ -17,7 +17,6 @@ trait InteractsWithPaymentAPI
             '/token',
             'get',
             $this->headers,
-            null,
             [
                 'query' => [
                     'client_key' => $this->getAuthKey(),
@@ -36,7 +35,9 @@ trait InteractsWithPaymentAPI
             '/charge',
             'post',
             $this->headers,
-            $transaction
+            [
+                'json' => $transaction->toArray(),
+            ]
         );
     }
 
@@ -51,7 +52,6 @@ trait InteractsWithPaymentAPI
             '/capture',
             'post',
             $this->headers,
-            null,
             [
                 'json' => [
                     'transaction_id' => $id,
@@ -183,7 +183,6 @@ trait InteractsWithPaymentAPI
             "/{$id}/status/b2b",
             'get',
             $this->headers,
-            null,
             [
                 'query' => [
                     'page' => $page,
@@ -199,7 +198,6 @@ trait InteractsWithPaymentAPI
             '/card/register',
             'get',
             $this->headers,
-            null,
             [
                 'query' => [
                     'card_number' => (string) $card_number,
@@ -230,7 +228,6 @@ trait InteractsWithPaymentAPI
             '/pay/account',
             'post',
             $this->headers,
-            null,
             [
                 'json' => $body,
             ]

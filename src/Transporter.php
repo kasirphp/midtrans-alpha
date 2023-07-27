@@ -17,7 +17,6 @@ final class Transporter
         string $url,
         string $method,
         Headers $headers,
-        Transaction $transaction = null,
         array $params = [],
         string $version = null,
         bool $production = false
@@ -31,10 +30,6 @@ final class Transporter
         $options = [
             'headers' => $headers->toArray(),
         ];
-
-        if (! is_null($transaction)) {
-            $options['json'] = $transaction->toArray();
-        }
 
         $client = new GuzzleClient($options);
 
