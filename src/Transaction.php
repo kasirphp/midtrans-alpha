@@ -21,7 +21,7 @@ final class Transaction implements Arrayable
 
     public function grossAmount(int $amount): Transaction
     {
-        $this->addConfig('transaction_details', ['gross_amount' => $amount]);
+        $this->config['transaction_details']['gross_amount'] = $amount;
 
         return new self($this->config);
     }
@@ -33,7 +33,7 @@ final class Transaction implements Arrayable
 
     public function orderId(string $orderId): Transaction
     {
-        $this->addConfig('transaction_details', ['order_id' => $orderId]);
+        $this->config['transaction_details']['order_id'] = $orderId;
 
         return new self($this->config);
     }
