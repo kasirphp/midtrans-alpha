@@ -11,9 +11,9 @@ final class BaseUrl
 
     private const base_url = 'midtrans.com';
 
-    public static function with(string $path, bool $production = false): string
+    public static function with(string $path, bool $production = false, string $subdomain = 'api'): string
     {
-        $url = self::protocol.'api.'.($production ? '' : 'sandbox.').self::base_url;
+        $url = self::protocol.$subdomain.'.'.($production ? '' : 'sandbox.').self::base_url;
 
         $path = str_starts_with($path, '/') ? $path : '/'.$path;
 
