@@ -2,11 +2,14 @@
 
 namespace Kasir\Midtrans;
 
+use Kasir\Midtrans\Concerns\CanMutateConfig;
 use Kasir\Midtrans\Contracts\Arrayable;
 use Kasir\Midtrans\PaymentObjects\PaymentObject;
 
 final class Transaction implements Arrayable
 {
+    use CanMutateConfig;
+
     public function __construct(private array $config = [])
     {
     }
@@ -52,16 +55,6 @@ final class Transaction implements Arrayable
         $this->mergeConfig($object->toArray());
 
         return new self($this->config);
-    }
-
-    private function addConfig(string $key, array $value): void
-    {
-        $this->config = array_merge_recursive($this->config, [$key => $value]);
-    }
-
-    private function mergeConfig(array $config): void
-    {
-        $this->config = array_merge($this->config, $config);
     }
 
     public function toArray(): array
