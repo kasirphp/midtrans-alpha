@@ -18,13 +18,11 @@ final class Transporter
         string $method,
         Headers $headers,
         array $params = [],
-        string $version = null,
         bool $production = false
     ): Response {
         $url = BaseUrl::with(
             $url,
             production: $production,
-            version: $version ?? 'v2'
         );
 
         $options = [

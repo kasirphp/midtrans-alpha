@@ -14,7 +14,7 @@ trait InteractsWithPaymentAPI
     public function cardToken(int|string $card_number, int|string $exp_month, int|string $exp_year, int|string $cvv): Response
     {
         return Transporter::request(
-            '/token',
+            '/v2/token',
             'get',
             $this->headers,
             [
@@ -32,7 +32,7 @@ trait InteractsWithPaymentAPI
     public function charge(Transaction $transaction): Response
     {
         return Transporter::request(
-            '/charge',
+            '/v2/charge',
             'post',
             $this->headers,
             [
@@ -49,7 +49,7 @@ trait InteractsWithPaymentAPI
         };
 
         return Transporter::request(
-            '/capture',
+            '/v2/capture',
             'post',
             $this->headers,
             [
@@ -69,7 +69,7 @@ trait InteractsWithPaymentAPI
         };
 
         return Transporter::request(
-            "/{$id}/cancel",
+            "/v2/{$id}/cancel",
             'post',
             $this->headers
         );
@@ -84,7 +84,7 @@ trait InteractsWithPaymentAPI
         };
 
         return Transporter::request(
-            "/{$id}/expire",
+            "/v2/{$id}/expire",
             'post',
             $this->headers
         );
@@ -99,7 +99,7 @@ trait InteractsWithPaymentAPI
         };
 
         return Transporter::request(
-            "/{$id}/refund",
+            "/v2/{$id}/refund",
             'post',
             $this->headers
         );
@@ -114,7 +114,7 @@ trait InteractsWithPaymentAPI
         };
 
         return Transporter::request(
-            "/{$id}/refund/online/direct",
+            "/v2/{$id}/refund/online/direct",
             'post',
             $this->headers
         );
@@ -132,7 +132,7 @@ trait InteractsWithPaymentAPI
         };
 
         return Transporter::request(
-            "/{$id}/approve",
+            "/v2/{$id}/approve",
             'post',
             $this->headers
         );
@@ -150,7 +150,7 @@ trait InteractsWithPaymentAPI
         };
 
         return Transporter::request(
-            "/{$id}/deny",
+            "/v2/{$id}/deny",
             'post',
             $this->headers
         );
@@ -165,7 +165,7 @@ trait InteractsWithPaymentAPI
         };
 
         return Transporter::request(
-            "/{$id}/status",
+            "/v2/{$id}/status",
             'get',
             $this->headers
         );
@@ -180,7 +180,7 @@ trait InteractsWithPaymentAPI
         };
 
         return Transporter::request(
-            "/{$id}/status/b2b",
+            "/v2/{$id}/status/b2b",
             'get',
             $this->headers,
             [
@@ -195,7 +195,7 @@ trait InteractsWithPaymentAPI
     public function cardRegister(int|string $card_number, int|string $exp_month, int|string $exp_year, string $callback = null): Response
     {
         return Transporter::request(
-            '/card/register',
+            '/v2/card/register',
             'get',
             $this->headers,
             [
@@ -225,7 +225,7 @@ trait InteractsWithPaymentAPI
         }
 
         return Transporter::request(
-            '/pay/account',
+            '/v2/pay/account',
             'post',
             $this->headers,
             [
@@ -242,7 +242,7 @@ trait InteractsWithPaymentAPI
         };
 
         return Transporter::request(
-            "/pay/account/{$id}/unbind",
+            "/v2/pay/account/{$id}/unbind",
             'post',
             $this->headers
         );
@@ -256,7 +256,7 @@ trait InteractsWithPaymentAPI
         };
 
         return Transporter::request(
-            "/pay/account/{$id}",
+            "/v2/pay/account/{$id}",
             'get',
             $this->headers
         );
