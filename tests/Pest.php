@@ -1,7 +1,5 @@
 <?php
 
-use Kasir\Midtrans\Responses\Response;
-
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -26,8 +24,8 @@ use Kasir\Midtrans\Responses\Response;
 |
 */
 
-expect()->extend('toBeInstanceOfResponse', function () {
-    return $this->toBeInstanceOf(Response::class);
+expect()->extend('tobeOne', function () {
+    return $this->toBe(1);
 });
 
 /*

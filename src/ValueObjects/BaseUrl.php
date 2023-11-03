@@ -7,17 +7,15 @@ namespace Kasir\Midtrans\ValueObjects;
  */
 final class BaseUrl
 {
-    private const production_url = 'https://api.midtrans.com';
+    private const protocol = 'https://';
 
-    private const sandbox_url = 'https://api.sandbox.midtrans.com';
+    private const base_url = 'midtrans.com';
 
-    public static function with(string $path, bool $snap = false, bool $production = false, string $version = 'v2'): string
+    public static function with(string $path, bool $production = false, string $subdomain = 'api'): string
     {
-        $url = $production ? self::production_url : self::sandbox_url;
+        $url = self::protocol.$subdomain.'.'.($production ? '' : 'sandbox.').self::base_url;
 
         $path = str_starts_with($path, '/') ? $path : '/'.$path;
-
-        $path = $snap ? '/snap/v1' : "/{$version}{$path}";
 
         return $url.$path;
     }
